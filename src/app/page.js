@@ -1,14 +1,9 @@
-
-import { Header } from "./components/Header/Header"
-import { Main } from "./components/Main/Main"
-import { Footer } from "./components/Footer/Footer"
+import { Filter } from "./components/Filter/Filter"
 
 export default function Home() {
   return (
     <div>
-      <Header  />
-      <Main />
-      <Footer />
+        <Filter />
     </div>
   )
 }

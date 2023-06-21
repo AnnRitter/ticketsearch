@@ -1,9 +1,15 @@
 import styles from './Header.module.css'
+import Link from 'next/link'
+
 export function Header() {
 return (
-    <header >
-        <h1 className={styles.title}>Билетопоиск</h1>
-        <img src="/basket.svg" width="32" height="32" alt="cart" />
+    <header className="dark">
+        <Link href="/">
+            <h1 >Билетопоиск</h1>
+        </Link>
+        <Link  href="/cart">
+            <img src="/basket.svg" width="32" height="32" alt="cart" />
+        </Link>
     </header>
 )
 }

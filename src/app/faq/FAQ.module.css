@@ -1,0 +1,28 @@
+.mainMar {
+    margin-bottom: 24px
+}
+.mar {
+    margin-bottom: 16px;
+}
+.innerWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.answer {
+    display: none;
+}
+.toggle {
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+.toggle::before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url('/icon.svg');
+}
