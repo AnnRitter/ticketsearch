@@ -1,29 +1,31 @@
+'use client'
+
 import styles from './Display.module.css'
 import classnames from 'classnames'
+import { useState, useEffect } from "react"
+import { FilmPreview } from '../FilmPreview/FilmPreview'
+export function Display() {
+const [films, setFilms] = useState(null)
 
-async function getData() {
-  const response = await fetch('http://localhost:3001/api/movies')
-  console.log(response);
-  return response.json()
-}
-
-export async function Display() {
-  const films = await getData()
-  films.map((film) => {
-    console.log(film.title, 111);
-  })
-return (
-    <div className={classnames('wrap, light', styles.bg)}>
-      <div>
-        {
-          films.map((film) => {
-            <div key={film.id}>
-              <p>{film.title}</p>
-
-            </div>
-          })
+ useEffect(() => {
+        async function fetchData()  {
+            const response = await fetch('http://localhost:3001/api/movies')
+            const result = await response.json()
+            setFilms(result)
         }
-      </div>
+        fetchData();
+    }, []);
+return (
+    <div>
+      <ul className={ styles.wrap }>
+        {
+          films && films.map((film) => {
+            return (
+              <FilmPreview key={film.id} film={film}/> 
+            )
+          })
+       }
+      </ul>
     </div>
 )
 }

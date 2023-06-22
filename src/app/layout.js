@@ -2,6 +2,8 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { Header } from './components/Header/Header'
 import { Footer } from './components/Footer/Footer'
+import { StoreProvider } from '@/redux/services/StoreProvides'
+import { store } from '@/redux/services/store'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,9 +16,13 @@ export default function RootLayout({children}) {
   return (
       <html lang="ru">
           <body>
+            <StoreProvider> 
               <Header />
-              <main className="main">{children}</main>
+              <main className="main">
+               {children}
+                </main>
               <Footer />
+            </StoreProvider> 
           </body>
       </html>
   )

@@ -1,0 +1,32 @@
+.wrap {
+    display: flex;
+    gap: 8px;
+}
+.decrement,
+.increment {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    background-color: var(--orange);
+    color: var(--white);
+    border-radius: 4px;
+}
+/* .decrement::before,
+.increment::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+.decrement::before {
+    background-image: url('/decrement.svg');
+}
+.increment::before {
+    background-image: url('/increment.svg');
+} */

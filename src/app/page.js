@@ -3,7 +3,7 @@ import { Display } from "./components/Display/Display"
 
 export default function Home() {
   return (
-    <div>
+    <div className="flexHorizontal">
         <Filter />
         <Display />
 

@@ -1,0 +1,18 @@
+.wrap {
+    display: flex;
+    gap: 8px;
+}
+.counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background-color: var(--orange);
+    margin: auto;
+}
+.img {
+    width: 32px;
+    height: 32px;
+}
