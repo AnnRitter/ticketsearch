@@ -14,19 +14,7 @@
     color: var(--white);
     border-radius: 4px;
 }
-/* .decrement::before,
-.increment::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    display: block;
+.decrement:disabled,
+.increment:disabled {
+    background-color: var(--opacity-orange);
 }
-.decrement::before {
-    background-image: url('/decrement.svg');
-}
-.increment::before {
-    background-image: url('/increment.svg');
-} */

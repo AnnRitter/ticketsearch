@@ -4,22 +4,18 @@ import styles from './Display.module.css'
 import classnames from 'classnames'
 import { useState, useEffect } from "react"
 import { FilmPreview } from '../FilmPreview/FilmPreview'
-export function Display() {
-const [films, setFilms] = useState(null)
+import { useGetMoviesQuery } from '@/redux/services/movieApi'
 
- useEffect(() => {
-        async function fetchData()  {
-            const response = await fetch('http://localhost:3001/api/movies')
-            const result = await response.json()
-            setFilms(result)
-        }
-        fetchData();
-    }, []);
+
+export function Display() {
+
+const { data, isLoading, error } = useGetMoviesQuery()
+
 return (
     <div>
       <ul className={ styles.wrap }>
         {
-          films && films.map((film) => {
+          data && data.map((film) => {
             return (
               <FilmPreview key={film.id} film={film}/> 
             )

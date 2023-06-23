@@ -14,7 +14,7 @@ export function FilmPreview({film}) {
                     <p className={ styles.text }>{ film.genre }</p>
                 </div>
             </div>
-          <Counter />
+          <Counter id = {film.id} />
         </div>
     )
     }
