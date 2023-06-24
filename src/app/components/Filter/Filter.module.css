@@ -6,6 +6,71 @@
   height: calc(100vh - 221px);
   align-self: flex-start;
 }
-.title {
+.selectWrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+.itemWrap {
+  padding: 8px;
+  border-radius: 8px;
+  display: block;
+  border: 1px solid #E1E3E6;
+  background-color: var(--white);
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  max-width: 360px;
+  width: 100%;
+  z-index: 1;
+  
+}
+.mainTitle {
   margin-bottom: 20px;
+}
+.title {
+  font-size: 14px;
+  font-family: var(--sf);
+  line-height: 20px;
+  margin-bottom: 4px;
+}
+.input {
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid #E1E3E6;
+  padding: 10px 16px;
+  max-width: 360px;
+  width: 100%;
+  font-size: 14px;
+  font-family: var(--sf);
+  line-height: 20px;
+  color: var(--placeholder-color);
+  text-align: start;
+}
+.input::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+}
+
+.inactive::after {
+  background-image: url('/arrow-square-down.svg');
+  
+}
+
+
+.active {
+  border: 1px solid var(--orange);
+  color: var(--text-color);
+}
+.active::after {
+  background-image: url('/arrow-square-up.svg');
+  
+}
+
+.item {
+  padding: 12px;
 }

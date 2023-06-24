@@ -1,0 +1,38 @@
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+.innerWrap {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.bigGap{
+    margin-bottom: 32px;
+}
+.img {
+    width: 400px;
+    height: 500px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+.infoWrap {
+    max-width: 1376px;
+    width: 100%;
+}
+.title {
+    margin-bottom: 24px;
+}
+.info {
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: capitalize;
+}
+.h4 {
+    margin-bottom: 16px;
+}
+.span {
+    font-size: 16px;
+}

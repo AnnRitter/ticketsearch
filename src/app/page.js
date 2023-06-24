@@ -1,12 +1,16 @@
-import { Filter } from "./components/Filter/Filter"
-import { Display } from "./components/Display/Display"
+
+import { useSelector } from 'react-redux'
+import {store} from '../redux/services/store'
+import { MainPage } from './components/MainPage/MainPage'
+
 
 export default function Home() {
-  return (
-    <div className="flexHorizontal">
-        <Filter />
-        <Display />
+  
 
-    </div>
+  return (
+    <div className="">
+            <MainPage />
+        </div>
   )
 }
+

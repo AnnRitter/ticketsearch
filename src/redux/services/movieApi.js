@@ -9,10 +9,10 @@ export const movieApi = createApi({
         getMovies: builder.query( {
             query: () => 'movies'
         }),
-        // getMovie: builder.query({
-        //     query: (movieId) => `movie?movieId=${movieId}`
-        // })
+        getMovie: builder.query({
+            query: (movieId) => `movie?movieId=${movieId}`
+        })
     })
 })
 
-export const { useGetMoviesQuery } = movieApi
+export const { useGetMoviesQuery, useGetMovieQuery } = movieApi
