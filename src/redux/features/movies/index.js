@@ -1,11 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {}
+const initialState = []
 
-export const movieSlice = createSlice({
-    name: 'movies',
-    initialState,
-    reducers: {
-       
-    } 
+export const filmsSlice = createSlice({
+  name: 'films',
+  initialState,
+  reducers: {
+    getData: (state, { payload }) => {
+      state.push(...payload)
+    },
+  }
 })
+
+export const filmsReducer = filmsSlice.reducer
+export const filmsActions  = filmsSlice.actions

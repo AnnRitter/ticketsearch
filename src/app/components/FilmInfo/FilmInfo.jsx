@@ -1,6 +1,6 @@
 import styles from './FilmInfo.module.css'
 import classnames from 'classnames'
-
+import { Counter } from '../Counter/Counter'
 export function FilmInfo({film}) {
    
     if(film) {
@@ -8,7 +8,11 @@ export function FilmInfo({film}) {
             <div className={classnames("wrap light", styles.wrap)}>
                 <img src={film.posterUrl} alt="poster"  className={ styles.img }/>
                 <div className={ styles.infoWrap}>
-                    <h2 className={ styles.title }>{film.title}</h2>
+                    <div className={ styles.title}>
+                        <h2>{film.title}</h2>
+                        <Counter id = {film.id} />
+                    </div>
+                    
                     <div className={ styles.innerWrap }>
                         <h4>Жанр:</h4>
                         <p className={ styles.info }>{film.genre}</p>

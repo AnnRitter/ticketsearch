@@ -1,0 +1,46 @@
+.wrap {
+    padding: 24px;
+    display: flex;
+    gap: 32px;
+}
+.wrap:not(:last-child) {
+    margin-bottom: 24px;
+}
+.content {
+    max-width: 1676px;
+    width: 100%;
+}
+.title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.defaultImg {
+    display: block;
+    max-width: 100px;
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    background-color: #E0E0E0;
+    position: relative;
+}
+.defaultImg::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 34px;
+    left: 34px;
+    width: 32px;
+    height: 32px;
+    background-image: url('/photo.svg');
+}
+.rating {
+    font-size: 20px;
+    line-height: 32px;
+}
+.rating span {
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 600;
+}

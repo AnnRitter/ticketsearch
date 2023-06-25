@@ -1,0 +1,47 @@
+.wrap { 
+    display: flex;
+    justify-content: space-between;
+    max-width: 1424px;
+    width: 100%;
+    gap: 24px;
+}
+.wrap:not(:last-child) {
+    margin-bottom: 16px;
+}
+.img {
+    width: 100px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+.titleWrap {
+    display: flex;
+    gap: 24px;
+}
+.title {
+    margin-bottom: 8px;
+}
+.text {
+    font-style: italic;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+.close {
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+.close::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url('/close.svg');
+}
+.closeWrap {
+    display: flex;
+    gap: 24px;
+}

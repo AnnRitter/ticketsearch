@@ -1,10 +1,13 @@
-import styles from './FilmPreview.module.css'
+import styles from './CartItem.module.css'
 import classnames from 'classnames'
-import Image from 'next/image'
-import { Counter } from '../Counter/Counter'
 import Link from 'next/link'
+import { Counter } from '../Counter/Counter'
+import { createPortal } from 'react-dom'
+import { Modal } from '../Modal/Modal'
+import { useState } from 'react'
 
-export function FilmPreview({film}) {
+export function CartItem({film}) {
+    const [isModalOpen, setIsModalOpen] = useState(false)
     return (
         <div className={classnames("wrap light", styles.wrap)}>
             <div className={ styles.titleWrap }>
@@ -17,7 +20,12 @@ export function FilmPreview({film}) {
                     <p className={ styles.text }>{ film.genre }</p>
                 </div>
             </div>
-          <Counter id = {film.id} />
+            <div className={styles.closeWrap}>
+                <Counter id = {film.id} />
+                {isModalOpen && createPortal(<Modal id={film.id}/>, document.body)}
+                <button className={ styles.close } onClick={() => setIsModalOpen((isOpen) => !isOpen)}></button>
+            </div>
+       
         </div>
     )
-    }
+}
