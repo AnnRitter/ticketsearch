@@ -10,6 +10,9 @@
   --orange: #F50;
   --opacity-orange: #FFA375;
   --white: #FFF;
+
+  --header-height: 86px;
+  --footer-height: 83px;
 }
 
 @font-face {
@@ -141,6 +144,7 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 1;
+  height: var(--header-height);
 }
 
 footer {
@@ -150,6 +154,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   font-size: 2rem;
+  height: var(--footer-height);
 }
 
 .dark {
@@ -175,4 +180,8 @@ footer {
 }
 .emptyPage {
   text-align: center;
+}
+
+.main {
+  min-height: calc(100vh - var(--footer-height) - var(--header-height));
 }
