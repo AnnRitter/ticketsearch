@@ -26,7 +26,7 @@ MenuDropDown.Group = function MenuGroup ({children, title}) {
 
     return (
         <GroupContext.Provider value={{isActive, setIsActive}}>
-        <div className={ styles.innerWrap}>
+        <div className={ classnames('wrap light', styles.innerWrap) }>
             <h3 className={ styles.question }>{title}</h3>
             <button className={ styles.toggle } onClick={() => {
                 setIsActive((!isActive))
@@ -40,23 +40,30 @@ MenuDropDown.Group = function MenuGroup ({children, title}) {
 }
 
 MenuDropDown.Item = function MenuItem ({children, title}) {
-    return  <div className={ styles.item }>{title}</div>
+    return  <div className={classnames( 'wrap light') }>{title}</div>
 }
 
 export default function FAQ() {
     
     return (
         <div>
+            <h2 className={ classnames("wrap light", styles.mainMar) }>Вопросы-ответы</h2>
             <MenuDropDown>
+                <div className={styles.mar}>
                 <MenuDropDown.Group title="Что такое Билетопоиск?">
                     <MenuDropDown.Item title="Мы — крупнейший сервис о кино в рунете. На нем вы сможете посмотреть фильмы и сериалы, купить билеты в кино, узнать рейтинги популярных видео и интересные факты, поставить фильмам оценки, написать рецензии и дополнить описание фильмов."/>
                 </MenuDropDown.Group>
+                </div>
+                <div className={styles.mar}>
                 <MenuDropDown.Group title="Какой компании принадлежит Билетопоиск?">
                     <MenuDropDown.Item title="C 15 октября 2013 года сервис принадлежит компании «Яндекс»"/>
                 </MenuDropDown.Group>
+                </div>
+                <div className={styles.mar}>
                 <MenuDropDown.Group title="Как купить билет на Билетопоиск?">
                     <MenuDropDown.Item title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsam."/>
                 </MenuDropDown.Group>
+                </div>
                 <MenuDropDown.Group title="Как оставить отзыв на Билетопоиск?">
                     <MenuDropDown.Item title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, ipsam."/>
                 </MenuDropDown.Group>

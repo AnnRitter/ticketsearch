@@ -9,9 +9,7 @@
     justify-content: space-between;
     align-items: center;
 }
-.answer {
-    display: none;
-}
+
 .toggle {
     position: relative;
     width: 30px;
