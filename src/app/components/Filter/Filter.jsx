@@ -3,7 +3,7 @@
 import styles from './Filter.module.css'
 import classnames from 'classnames'
 import { FilterName } from '../FilterName/FilterName'
-
+import { useSelector } from "react-redux"
 import React, { useState, useContext, useCallback } from 'react'
 
 export const MenuContext = React.createContext(false)
@@ -47,14 +47,43 @@ FilterDropDown.Item = function MenuItem ({children, title }) {
 }
 
 export function Filter() {
+    const films = useSelector((state) => state.films
+    );
+    let localGenres = new Map()
+    let translation = ''
+    films.forEach(film => {
+    
+        if (!localGenres.has(film.genre)) {
+            if (film.genre === 'fantasy') translation = 'Фэнтези'
+            if (film.genre === 'horror') translation = 'Ужасы'
+            if (film.genre === 'action') translation = 'Боевик'
+            if (film.genre === 'comedy') translation = 'Комедия'
+            localGenres.set(film.genre, translation)
+        }
+    })
 return (
     <div className={classnames("wrap light", styles.wrap)}>
         <h5 className={ styles.mainTitle }>Фильтр поиска</h5>
             <FilterName />
            <FilterDropDown>
                 <FilterDropDown.Group title="Жанр" defaultPlaceholder="Выберите жанр">
-                    <FilterDropDown.Item title="Комедия"/>
-                    <FilterDropDown.Item title="Horror"/>
+                    
+                        {
+                            localGenres.forEach((genre) => {
+                                console.log(genre);
+                                <FilterDropDown.Item title={genre}/>
+                            })
+                            // localGenres && localGenres.values( (genre) => {
+                            //     console.log(genre);
+                            //    return (<FilterDropDown.Item title={genre}/>)
+                            // }) 
+                        }
+                   
+                    <FilterDropDown.Item title='Не выбран'/>
+                    <FilterDropDown.Item title={localGenres.get('fantasy')}/>
+                    <FilterDropDown.Item title={localGenres.get('horror')}/>
+                    <FilterDropDown.Item title={localGenres.get('action')}/>
+                    <FilterDropDown.Item title={localGenres.get('comedy')}/>
                 </FilterDropDown.Group>
                 <FilterDropDown.Group title="Кинотеатр" defaultPlaceholder="Выберите кинотеатр">
                     <FilterDropDown.Item title="Кинотеатр 1"/>
