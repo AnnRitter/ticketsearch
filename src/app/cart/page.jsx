@@ -32,6 +32,9 @@ export default function Cart() {
   
     return (
       <div className="">
+        {
+           !sum &&  <div className="emptyPage">Корзина пуста</div>
+          }
         <ul>
           {
             filteredFilms && filteredFilms.map(film => {
@@ -39,14 +42,12 @@ export default function Cart() {
                 <CartItem key={film.id} film={film}/>
               )
             })
-           
+            
           }
-          <CartAmount amount={sum} />
+          {sum && <CartAmount amount={sum} />}
            </ul>
             
-          {
-            <div className="emptyPage"></div>
-          }
+         
           
       </div>
        

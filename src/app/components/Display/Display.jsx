@@ -7,7 +7,7 @@ import { FilmPreview } from '../FilmPreview/FilmPreview'
 // import { useGetMoviesQuery } from '@/redux/services/movieApi'
 
 
-export function Display({data}) {
+export function Display({data, loading}) {
 
 // const { data, isLoading, error } = useGetMoviesQuery()
 
@@ -21,7 +21,11 @@ return (
             )
           })
        }
+       {
+        loading && <div className=""> Loading...</div>
+       }
       </ul>
+
     </div>
 )
 }

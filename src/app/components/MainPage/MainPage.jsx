@@ -18,6 +18,8 @@ export function MainPage() {
     const [active, setActive] = useState()
     const [result, setResult] = useState()
 
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
         fetch('http://localhost:3001/api/cinemas')
         .then(response =>  response.json())
@@ -97,17 +99,20 @@ export function MainPage() {
    
     
     useEffect(() => {
+        setLoading(true)
         fetch('http://localhost:3001/api/movies')
         .then((response) => response.json())
         .then((actualData) => {
             if (!films.length) dispatch(filmsActions.getData(actualData))
+            setLoading(false)
         } )
+        
     }, []);
 
     return (
         <div className="flexHorizontal">
             <Filter cinemas={cinemas} />
-            <Display data={active ? result : films} />
+            <Display data={active ? result : films} loading={loading}/>
         </div>
     )
 }
