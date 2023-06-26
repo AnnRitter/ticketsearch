@@ -21,7 +21,7 @@ export function CartItem({film}) {
                 </div>
             </div>
             <div className={styles.closeWrap}>
-                <Counter id = {film.id} />
+                <Counter id = {film.id} setIsModalOpen={setIsModalOpen} needModal={true}/>
                 {isModalOpen && createPortal(<Modal id={film.id} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>, document.body)}
                 
                 <button className={ styles.close } onClick={() => setIsModalOpen((isOpen) => !isOpen)}></button>

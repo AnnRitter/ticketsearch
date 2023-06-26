@@ -17,7 +17,7 @@ export function FilmPreview({film}) {
                     <p className={ styles.text }>{ film.genre }</p>
                 </div>
             </div>
-          <Counter id = {film.id} />
+          <Counter id = {film.id} needModal={false}/>
         </div>
     )
     }

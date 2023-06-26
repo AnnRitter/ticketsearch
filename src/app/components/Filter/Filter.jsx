@@ -4,7 +4,7 @@ import styles from './Filter.module.css'
 import classnames from 'classnames'
 import { FilterName } from '../FilterName/FilterName'
 import { useSelector } from "react-redux"
-import React, { useState, useContext, useCallback } from 'react'
+import React, { useState, useContext, useCallback, useEffect } from 'react'
 
 export const MenuContext = React.createContext(false)
 export const GroupContext = React.createContext(false)
@@ -34,13 +34,14 @@ FilterDropDown.Group = function MenuGroup ({children, title, defaultPlaceholder}
             </GroupContext.Provider> 
 }
 
-FilterDropDown.Item = function MenuItem ({children, title }) {
+FilterDropDown.Item = function MenuItem ({title, setActiveGenre }) {
     const {switchGroup} = useContext(MenuContext)
     const { placeholder, setPlaceholder } = useContext(GroupContext)
 
     return <div className={ styles.item }>
         <button onClick={() => {
             setPlaceholder((title))
+            setActiveGenre((title))
             switchGroup((title))
         }} className="">{title} </button>
     </div>
@@ -49,50 +50,58 @@ FilterDropDown.Item = function MenuItem ({children, title }) {
 export function Filter() {
     const films = useSelector((state) => state.films
     );
-    let localGenres = new Map()
-    let translation = ''
+    let genres =[]
     films.forEach(film => {
-    
-        if (!localGenres.has(film.genre)) {
-            if (film.genre === 'fantasy') translation = 'Фэнтези'
-            if (film.genre === 'horror') translation = 'Ужасы'
-            if (film.genre === 'action') translation = 'Боевик'
-            if (film.genre === 'comedy') translation = 'Комедия'
-            localGenres.set(film.genre, translation)
-        }
+        if (!genres.includes(film.genre)) genres.push(film.genre)
     })
-return (
-    <div className={classnames("wrap light", styles.wrap)}>
-        <h5 className={ styles.mainTitle }>Фильтр поиска</h5>
-            <FilterName />
-           <FilterDropDown>
-                <FilterDropDown.Group title="Жанр" defaultPlaceholder="Выберите жанр">
-                    
-                        {
-                            localGenres.forEach((genre) => {
-                                console.log(genre);
-                                <FilterDropDown.Item title={genre}/>
-                            })
-                            // localGenres && localGenres.values( (genre) => {
-                            //     console.log(genre);
-                            //    return (<FilterDropDown.Item title={genre}/>)
-                            // }) 
-                        }
-                   
-                    <FilterDropDown.Item title='Не выбран'/>
-                    <FilterDropDown.Item title={localGenres.get('fantasy')}/>
-                    <FilterDropDown.Item title={localGenres.get('horror')}/>
-                    <FilterDropDown.Item title={localGenres.get('action')}/>
-                    <FilterDropDown.Item title={localGenres.get('comedy')}/>
-                </FilterDropDown.Group>
-                <FilterDropDown.Group title="Кинотеатр" defaultPlaceholder="Выберите кинотеатр">
-                    <FilterDropDown.Item title="Кинотеатр 1"/>
-                    <FilterDropDown.Item title="Кинотеатр 2"/>
-                </FilterDropDown.Group>
-           </FilterDropDown>
-       
 
+    useEffect(() => {
+        fetch('http://localhost:3001/api/cinemas')
+        .then(response =>  response.json())
+        .then(cinemas => {
+        console.log(cinemas);
+        })
+    }, [])
+
+    const [activeGenre , setActiveGenre] = useState()
+    const [activeName , setActiveName] = useState()
+    const [activeCinema , setActiveCinema] = useState()
+    console.log(activeGenre, activeName, activeCinema);
+
+    let activeFilters = [
+        {'activeGenre': activeGenre},
+        {'activeName': activeName},
+        {'activeCinema': activeCinema}
+    ]
+    // let filteredFilms = []
+    // useEffect(() => {
+    //    filteredFilms = films.filter((film) => {
+    //        if(activeFilters['activeGenre'] && activeFilters['activeGenre'] === film.genre) return film
+    //     })
+    // }, [activeFilters])
+    // console.log(filteredFilms);
+    return (
+        <div className={classnames("wrap light", styles.wrap)}>
+            <h5 className={ styles.mainTitle }>Фильтр поиска</h5>
+                <FilterName setActiveName={setActiveName}/>
+                <FilterDropDown>
+                    <FilterDropDown.Group title="Жанр" defaultPlaceholder="Выберите жанр">
+                        <FilterDropDown.Item title='Не выбран' setActiveGenre={setActiveGenre}/>
+                        {
+                            genres.map((genre) => {
+                                return <FilterDropDown.Item key={genre} title={genre} setActiveGenre={setActiveGenre}/>
+                            })
+                        }
+                    </FilterDropDown.Group>
+                    <FilterDropDown.Group title="Кинотеатр" defaultPlaceholder="Выберите кинотеатр">
+                        <FilterDropDown.Item title='Не выбран'/>
+                        <FilterDropDown.Item title="Кинотеатр 1"/>
+                        <FilterDropDown.Item title="Кинотеатр 2"/>
+                    </FilterDropDown.Group>
+                </FilterDropDown>
         
-    </div>
-)
+
+            
+        </div>
+    )
 }
